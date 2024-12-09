@@ -32,6 +32,6 @@ struct Colors {
     static let green: UIColor = UIColor.systemGreen
     static let orange: UIColor = UIColor.systemOrange
     
-    let clear: UIColor = UIColor.clear
+    static let clear: UIColor = UIColor.clear
     
 }
