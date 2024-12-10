@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 /// 전역으로 모달을 관리하기 위해 싱글턴 매니저로 구성.
 /// ModalManager를 통해 전역에서 원하는 View를 GlobalModalViewController 에 추가하여 보여준다.
 struct ModalManager {

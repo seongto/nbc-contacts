@@ -11,23 +11,31 @@ import SnapKit
 
 final class HeaderView: UIView {
     
-    let titleLabel: UILabel
-    let createButton: UIButton
+    let titleLabel: UILabel = UILabel()
+    let createButton: UIButton = UIButton()
     
-    weak var delegate: HeaderViewDelegate?
+    weak var coordinator: HomeCoordinator?
     
     override init(frame: CGRect) {
-        self.titleLabel = UILabel()
-        self.createButton = UIButton()
-        
         super.init(frame: frame)
-        setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        
+        setupUI()
+        mapButtons()
+    }
+    
+}
+
+// MARK: - 구성요소 레이아웃 및 액션 매핑
+
+extension HeaderView {
     private func setupUI() {
         titleLabel.applyHeaderTitleStyle()
         createButton.applyCreateButtonStyle()
@@ -50,10 +58,18 @@ final class HeaderView: UIView {
             make.bottom.equalToSuperview().inset(10)
             make.trailing.equalToSuperview().inset(Layouts.padding)
         }
-        
-        
     }
     
+    private func mapButtons() {
+        createButton.applyButtonAction(action: tapCreateButton)
+    }
+}
     
 
+// MARK: - 액션 관리
+
+extension HeaderView {
+    private func tapCreateButton() {
+        self.coordinator?.goToContactScreen()
+    }
 }

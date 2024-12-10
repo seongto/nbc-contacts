@@ -16,13 +16,18 @@ class HomeCoordinator: Coordinator {
     }
 
     func start() {
-        let homeVC = HomeViewController()
-        homeVC.coordinator = self
+        let headerView = HeaderView()
+        let homeContentView = HomeContentView()
+        let homeVC = HomeViewController( headerView: headerView, homeContentView: homeContentView )
+        
+        headerView.coordinator = self
+        
         navigationController.pushViewController(homeVC, animated: true)
     }
     
     func goToContactScreen() {
-        let ContactVC = ContactViewController()
-        navigationController.pushViewController(ContactVC, animated: true)
+        let contactVC = ContactViewController()
+        
+        navigationController.pushViewController(contactVC, animated: true)
     }
 }
