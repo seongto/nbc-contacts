@@ -40,9 +40,9 @@ extension HeaderView {
         titleLabel.applyHeaderTitleStyle()
         titleLabel.text = "친구 목록"
         createButton.applyCreateButtonStyle()
-        createButton.setTitle("추가", for: .normal)
         
         self.backgroundColor = Colors.bg
+        self.translatesAutoresizingMaskIntoConstraints = false
         
         
         [titleLabel, createButton].forEach { self.addSubview($0) }

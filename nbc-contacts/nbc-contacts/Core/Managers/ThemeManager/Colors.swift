@@ -34,4 +34,5 @@ struct Colors {
     static var orange: UIColor = .themeOrange
     static var mint: UIColor = .themeMint
 
+    static var darkGray: UIColor = .ballGray
 }

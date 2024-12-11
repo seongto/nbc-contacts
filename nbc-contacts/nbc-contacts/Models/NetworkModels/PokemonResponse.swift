@@ -19,7 +19,7 @@ struct PokemonResponse: Codable {
 
 }
 
-// MARK: - Sprites
+// MARK: - sprites
 
 /// 포켓몬의 이미지 정보 : 96 x 96 픽셀의 png 파일 묶음.
 struct Sprites: Codable {
@@ -35,14 +35,14 @@ struct Sprites: Codable {
 }
 
 
-// MARK: - TypeElement
+// MARK: - types
 
 struct PokemonType: Codable {
     let slot: Int
     let type: TypeDetail
 }
 
-// MARK: - Pokemon
+// MARK: - type
 
 struct TypeDetail: Codable {
     let name: String

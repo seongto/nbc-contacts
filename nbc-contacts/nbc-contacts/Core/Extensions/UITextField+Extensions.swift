@@ -9,12 +9,18 @@ import UIKit
 import SnapKit
 
 extension UITextField {
-    func applyInputStyle() {
+    func applyInputStyle(isLast: Bool) {
         self.backgroundColor = Colors.gray6.withAlphaComponent(0.3)
         self.borderStyle = .roundedRect
-        self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
-        self.leftViewMode = .always
+        self.placeholder = "입력바란다..."
+        self.returnKeyType = isLast ? .done : .next
+        self.isUserInteractionEnabled = true
         
+        
+//        if !isLast {
+//            self.becomeFirstResponder()
+//        }
+//        
 //        self.layer.cornerRadius = 10
 //        self.layer.borderWidth = 1
 //        self.layer.borderColor = Colors.gray1.cgColor

@@ -34,6 +34,7 @@ class TableCellTextView: UIView {
 extension TableCellTextView {
     private func setupUI() {
         self.backgroundColor = .clear
+        self.translatesAutoresizingMaskIntoConstraints = false
         
         [
             nameLabel,

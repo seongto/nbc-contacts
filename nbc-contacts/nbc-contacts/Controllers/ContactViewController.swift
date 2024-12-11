@@ -11,8 +11,7 @@ import SnapKit
 class ContactViewController: UIViewController {
     
     let contentView: ContactContentView
-    let scrollView = UIScrollView()
-
+    
     var isNew: Bool
     
     init(isNew: Bool){
@@ -29,6 +28,7 @@ class ContactViewController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        setupNavBar()
     }
 }
 
@@ -38,22 +38,13 @@ class ContactViewController: UIViewController {
 extension ContactViewController {
     
     private func setupUI(){
-        view.addSubview(scrollView)
-        scrollView.addSubview(contentView)
-        scrollView.applyVerticalStyle()
-        
+        view.addSubview(contentView)
+                
         view.backgroundColor = Colors.white
         
-        scrollView.snp.makeConstraints { make in
-            make.top.bottom.leading.trailing.equalToSuperview()
-        }
-        
         contentView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.width.equalTo(scrollView.frameLayoutGuide)
+            make.edges.equalToSuperview()
         }
-        
-        
     }
 }
 
@@ -69,7 +60,14 @@ extension ContactViewController {
             .font: Fonts.h3Bold
         ]
         
-        let rightButton = UIBarButtonItem()
-            navigationItem.rightBarButtonItem = rightButton
+        let rightButton = UIBarButtonItem(title:"apply", style: .plain, target: self, action: #selector(testman))
+
+        navigationItem.rightBarButtonItem = rightButton
+        navigationItem.title = isNew ? "새로운 연락처" : "-"
+    }
+    
+    @objc func testman() {
+        print("touched!")
     }
 }
+

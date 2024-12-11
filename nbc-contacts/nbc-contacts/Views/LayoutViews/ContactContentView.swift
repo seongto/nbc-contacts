@@ -11,6 +11,9 @@ import SnapKit
 
 class ContactContentView: UIView {
     
+    let scrollView = UIScrollView()
+    let contentView = UIView()
+    
     let profileImageView = UIImageView()
     let requestButton = UIButton()
     let nameFieldLabel = UILabel()
@@ -20,8 +23,8 @@ class ContactContentView: UIView {
     
     let redBg = UIView()
     let horizontalLine = UIView()
+    let lastView = UIView()
 
-    
     var isNew: Bool
     
     
@@ -32,17 +35,16 @@ class ContactContentView: UIView {
         setupUI()
     }
     
-    required init?(coder: NSCoder) {
+    required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
 
 // MARK: - 구성요소 레이아웃 및 액션 매핑
 extension ContactContentView {
     func setupUI() {
-        self.backgroundColor = Colors.green
-        
         [
             redBg,
             horizontalLine,
@@ -51,30 +53,44 @@ extension ContactContentView {
             nameFieldLabel,
             mobileFieldLabel,
             nameTextField,
-            mobileTextField
-        ].forEach { self.addSubview($0) }
+            mobileTextField,
+            lastView
+        ].forEach { contentView.addSubview($0) }
+        
+        scrollView.addSubview(contentView)
+        self.addSubview(scrollView)
+        
         
         // MARK: - 각 UI 스타일 적용
         
         profileImageView.applyProfileImageStyle(size: CGFloat(200))
         requestButton.applyRequestPokemonButtonStyle()
+        requestButton.applyButtonAction(action: {print("aaa")})
         
         nameFieldLabel.applyFieldLabelStyle()
         mobileFieldLabel.applyFieldLabelStyle()
         
-        nameTextField.applyInputStyle()
-        mobileTextField.applyInputStyle()
+        nameTextField.applyInputStyle(isLast: false)
+        mobileTextField.applyInputStyle(isLast: true)
+        
         
         // MARK: - 기타 UI 설정 및 레이아웃
         
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundColor = Colors.white
+        scrollView.backgroundColor = Colors.white
+        contentView.backgroundColor = Colors.white
         redBg.backgroundColor = UIColor.red
-        horizontalLine.backgroundColor = .darkGray
-        
+        horizontalLine.backgroundColor = Colors.darkGray
+        lastView.backgroundColor = Colors.white
         
         nameFieldLabel.text = "이름"
         mobileFieldLabel.text = "연락처"
         mobileTextField.keyboardType = .phonePad
-        
+                
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         profileImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(40)
@@ -116,5 +132,19 @@ extension ContactContentView {
             make.top.equalTo(mobileFieldLabel.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(Layouts.padding)
         }
+        
+        lastView.snp.makeConstraints { make in
+            make.top.equalTo(mobileTextField.snp.bottom).offset(10)
+            make.leading.trailing.equalToSuperview().inset(Layouts.padding)
+            make.height.equalTo(10)
+            make.bottom.equalToSuperview().offset(-20)
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalTo(scrollView.snp.width)
+        }
+
+    
     }
 }

@@ -29,6 +29,7 @@ extension HomeContentView {
     func setupUI() {
         self.addSubview(tableView)
         self.backgroundColor = Colors.yellow
+        self.translatesAutoresizingMaskIntoConstraints = false
         
         tableView.applyHomeTableStyle()
         

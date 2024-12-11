@@ -14,13 +14,13 @@ extension UIButton {
     
     func applyCreateButtonStyle() {
         var config = UIButton.Configuration.plain()
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular)
         
-        config.title = "추가"
+        config.image = UIImage(systemName: "plus", withConfiguration: imageConfig)
         config.buttonSize = .medium
         config.titleAlignment = .center
         
         self.configuration = config // config를 통해 설정한 내용 적용하기
-        self.titleLabel?.font = Fonts.h3
     }
     
     func applyRequestPokemonButtonStyle() {
@@ -30,7 +30,7 @@ extension UIButton {
         config.image = UIImage(systemName: "repeat", withConfiguration: imageConfig)
         config.buttonSize = .medium
         config.titleAlignment = .center
-        config.baseForegroundColor = .darkGray
+        config.baseForegroundColor = Colors.darkGray
         
         self.configuration = config
         

@@ -14,6 +14,6 @@ extension UIScrollView {
         self.isScrollEnabled = true
         self.translatesAutoresizingMaskIntoConstraints = false
         self.showsHorizontalScrollIndicator = false
-        self.alwaysBounceVertical = true
+        self.alwaysBounceVertical = false
     }
 }
