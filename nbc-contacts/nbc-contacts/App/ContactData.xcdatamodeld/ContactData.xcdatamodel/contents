@@ -16,9 +16,9 @@
         <attribute name="sprite_back" attributeType="URI"/>
         <attribute name="sprite_front" attributeType="URI"/>
         <attribute name="sprite_shiny" optional="YES" attributeType="URI"/>
-        <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Contact" inverseName="pokemon" inverseEntity="Contact"/>
+        <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Contact" inverseName="pokemon" inverseEntity="Contact"/>
     </entity>
-    <entity name="TimeStamp" representedClassName="TimeStamp" isAbstract="YES" syncable="YES" codeGenerationType="class">
+    <entity name="TimeStamp" representedClassName="TimeStamp" isAbstract="YES" syncable="YES">
         <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="deleted_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="updated_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>

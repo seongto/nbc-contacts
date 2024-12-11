@@ -14,13 +14,13 @@ struct Fonts {
     static let title2Bold = UIFont.systemFont(ofSize: 34, weight: .heavy)
 
     static let h1 = UIFont.systemFont(ofSize: 28, weight: .regular)
-    static let h1bold = UIFont.systemFont(ofSize: 28, weight: .heavy)
+    static let h1Bold = UIFont.systemFont(ofSize: 28, weight: .heavy)
     
     static let h2 = UIFont.systemFont(ofSize: 22, weight: .regular)
-    static let h2bold = UIFont.systemFont(ofSize: 22, weight: .heavy)
+    static let h2Bold = UIFont.systemFont(ofSize: 22, weight: .heavy)
     
     static let h3 = UIFont.systemFont(ofSize: 20, weight: .regular)
-    static let h3bold = UIFont.systemFont(ofSize: 20, weight: .heavy)
+    static let h3Bold = UIFont.systemFont(ofSize: 20, weight: .heavy)
     
     static let p = UIFont.systemFont(ofSize: 17, weight: .regular)
     static let bold = UIFont.systemFont(ofSize: 17, weight: .bold)

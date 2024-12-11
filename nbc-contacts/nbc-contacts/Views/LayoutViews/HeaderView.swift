@@ -14,10 +14,10 @@ final class HeaderView: UIView {
     let titleLabel: UILabel = UILabel()
     let createButton: UIButton = UIButton()
     
-    weak var coordinator: HomeCoordinator?
+    var coordinator: HomeCoordinator?
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init() {
+        super.init(frame: .zero)
     }
     
     required init?(coder: NSCoder) {
@@ -38,12 +38,14 @@ final class HeaderView: UIView {
 extension HeaderView {
     private func setupUI() {
         titleLabel.applyHeaderTitleStyle()
+        titleLabel.text = "친구 목록"
         createButton.applyCreateButtonStyle()
+        createButton.setTitle("추가", for: .normal)
         
         self.backgroundColor = Colors.bg
         
         
-        [titleLabel, createButton].forEach { addSubview($0) }
+        [titleLabel, createButton].forEach { self.addSubview($0) }
         
         self.snp.makeConstraints { make in
             make.height.equalTo(120)
@@ -69,7 +71,7 @@ extension HeaderView {
 // MARK: - 액션 관리
 
 extension HeaderView {
-    private func tapCreateButton() {
-        self.coordinator?.goToContactScreen()
+    func tapCreateButton() {
+        self.coordinator?.goToCreatorScreen()
     }
 }

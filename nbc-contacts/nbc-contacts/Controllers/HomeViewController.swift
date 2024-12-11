@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     let headerView: HeaderView
     let contentView: HomeContentView
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // contentView 데이터 정보 리프레시 함수 넣어주기
@@ -35,6 +36,17 @@ class HomeViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false // 뷰 컨트롤러가 사라질 때 나타내기
+    }
+    
+    
+}
+
+
+// MARK: - 구성요소 레이아웃 및 액션 매핑
+
+extension HomeViewController {
     func setupUI() {
         view.backgroundColor = Colors.bg
         
@@ -51,7 +63,4 @@ class HomeViewController: UIViewController {
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
-    
 }
-
-

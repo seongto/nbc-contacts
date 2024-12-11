@@ -14,15 +14,37 @@ import SnapKit
 extension UILabel {
     /// Home 화면의 친구목록 상단의 타이틀 스타일
     func applyHeaderTitleStyle() {
-        self.text = "친구 목록"
         self.backgroundColor = .clear
-        self.font = Fonts.h2
+        self.font = Fonts.h2Bold
         self.textColor = Colors.label
         self.textAlignment = .center
         self.numberOfLines = 0
     }
     
     
+    func applyNameInCellStyle() {
+        self.backgroundColor = .clear
+        self.textAlignment = .right
+        self.font = Fonts.p
+        self.textColor = Colors.label
+        self.numberOfLines = 0
+    }
+    
+    func applyMobileInCellStyle() {
+        self.backgroundColor = .clear
+        self.textAlignment = .right
+        self.font = Fonts.small
+        self.textColor = Colors.gray3
+        self.numberOfLines = 0
+    }
+    
+    func applyFieldLabelStyle() {
+        self.backgroundColor = .clear
+        self.textAlignment = .left
+        self.font = Fonts.small
+        self.textColor = Colors.gray1
+        self.numberOfLines = 0
+    }
     
     
 }

@@ -10,10 +10,9 @@ import SnapKit
 
 final class HomeContentView: UIView {
     
-    let tableView: UITableView
+    let tableView = UITableView()
     
     init() {
-        tableView = UITableView()
         super.init(frame: .zero)
         
         setupUI()

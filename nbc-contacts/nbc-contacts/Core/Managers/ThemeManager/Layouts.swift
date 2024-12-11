@@ -11,4 +11,6 @@ struct Layouts {
     static let paddingSmall: CGFloat = 15
     static let radius: CGFloat = 10
     static let itemSpacing: CGFloat = 10
+    
+    static let imageSize: CGFloat = 100
 }

@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+// MARK: - 버튼 스타일링
 
 extension UIButton {
     
@@ -18,10 +19,37 @@ extension UIButton {
         config.buttonSize = .medium
         config.titleAlignment = .center
         
-        self.titleLabel?.font = Fonts.h3
         self.configuration = config // config를 통해 설정한 내용 적용하기
+        self.titleLabel?.font = Fonts.h3
     }
     
+    func applyRequestPokemonButtonStyle() {
+        var config = UIButton.Configuration.plain()
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .regular)
+        
+        config.image = UIImage(systemName: "repeat", withConfiguration: imageConfig)
+        config.buttonSize = .medium
+        config.titleAlignment = .center
+        config.baseForegroundColor = .darkGray
+        
+        self.configuration = config
+        
+        self.backgroundColor = Colors.white
+        self.layer.cornerRadius = 60
+        self.layer.borderWidth = 20
+        self.layer.borderColor = UIColor.darkGray.cgColor
+
+        self.snp.makeConstraints { make in
+            make.height.width.equalTo(120)
+        }
+    }
+    
+}
+
+
+// MARK: - 버튼 액션 할당
+
+extension UIButton {
     // 부모로부터 액션을 할당받아 버튼의 터치 동작과 연결.
     func applyButtonAction(action: @escaping () -> Void) {
         let actionHandler = UIAction { _ in

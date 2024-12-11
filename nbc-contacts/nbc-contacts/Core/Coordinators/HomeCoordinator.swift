@@ -22,11 +22,20 @@ class HomeCoordinator: Coordinator {
         
         headerView.coordinator = self
         
+        print("------")
+        print(headerView.coordinator ?? "nil")
+        
         navigationController.pushViewController(homeVC, animated: true)
     }
     
-    func goToContactScreen() {
-        let contactVC = ContactViewController()
+    func goToCreatorScreen() {
+        let contactVC = ContactViewController(isNew: true)
+        
+        navigationController.pushViewController(contactVC, animated: true)
+    }
+    
+    func goToDetailScreen() {
+        let contactVC = ContactViewController(isNew: false)
         
         navigationController.pushViewController(contactVC, animated: true)
     }
