@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 extension UITextField {
     func applyInputStyle(isLast: Bool) {
@@ -32,5 +33,21 @@ extension UITextField {
             make.height.equalTo(50)
         }
         
+    }
+}
+
+
+// MARK: - 메소드 관리
+
+extension UITextField {
+    func applyLengthLimit(limit: Int, cancellables: inout Set<AnyCancellable>) {
+        self.publisher(for: \.text)
+            .compactMap { $0 }
+            .sink { [weak self] text in
+                if text.count > limit {
+                    self?.text = String(text.prefix(limit))
+                }
+            }
+            .store(in: &cancellables)
     }
 }

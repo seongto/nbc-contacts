@@ -10,21 +10,20 @@ import UIKit
 
 class HomeCoordinator: Coordinator {
     var navigationController: UINavigationController
+    var contactManager: ContactManager
+    var pokemonManager: PokemonManager
 
-    init(navigationController: UINavigationController) {
+    init(navigationController: UINavigationController, contactManager: ContactManager, pokemonManager: PokemonManager) {
         self.navigationController = navigationController
+        self.contactManager = contactManager
+        self.pokemonManager = pokemonManager
     }
 
     func start() {
-        let headerView = HeaderView()
-        let homeContentView = HomeContentView()
-        let homeVC = HomeViewController( headerView: headerView, homeContentView: homeContentView )
+        let homeVC = HomeViewController( contactManager: contactManager, pokemonManager: pokemonManager )
         
-        headerView.coordinator = self
-        
-        print("------")
-        print(headerView.coordinator ?? "nil")
-        
+        homeVC.coordinator = self
+                        
         navigationController.pushViewController(homeVC, animated: true)
     }
     

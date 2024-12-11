@@ -14,7 +14,7 @@ final class HeaderView: UIView {
     let titleLabel: UILabel = UILabel()
     let createButton: UIButton = UIButton()
     
-    var coordinator: HomeCoordinator?
+    var delegate: HeaderViewDelegate?
     
     init() {
         super.init(frame: .zero)
@@ -30,7 +30,6 @@ final class HeaderView: UIView {
         setupUI()
         mapButtons()
     }
-    
 }
 
 // MARK: - 구성요소 레이아웃 및 액션 매핑
@@ -72,6 +71,6 @@ extension HeaderView {
 
 extension HeaderView {
     func tapCreateButton() {
-        self.coordinator?.goToCreatorScreen()
+        self.delegate?.tapAddButton()
     }
 }

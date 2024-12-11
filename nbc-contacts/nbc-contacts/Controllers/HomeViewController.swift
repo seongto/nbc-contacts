@@ -9,20 +9,26 @@ import UIKit
 import SnapKit
 
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, HeaderViewDelegate {
     
-    let headerView: HeaderView
-    let contentView: HomeContentView
+    let headerView: HeaderView = HeaderView()
+    let contentView: HomeContentView = HomeContentView()
+    var contactManager: ContactManager
+    var pokemonManager: PokemonManager
+    
+    weak var coordinator : HomeCoordinator?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // contentView 데이터 정보 리프레시 함수 넣어주기
+        headerView.delegate = self
     }
     
-    init(headerView: HeaderView, homeContentView: HomeContentView) {
-        self.headerView = headerView
-        self.contentView = homeContentView
+    init(contactManager: ContactManager, pokemonManager: PokemonManager) {
+        self.contactManager = contactManager
+        self.pokemonManager = pokemonManager
         super.init(nibName: nil, bundle: nil)
         
         setupUI()
@@ -37,7 +43,7 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = false // 뷰 컨트롤러가 사라질 때 나타내기
+        navigationController?.isNavigationBarHidden = false
     }
     
     
@@ -62,5 +68,14 @@ extension HomeViewController {
             make.top.equalTo(headerView.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
+    }
+}
+
+
+// MARK: - 각종 이벤트 관리
+
+extension HomeViewController {
+    func tapAddButton() {
+        coordinator?.goToCreatorScreen()
     }
 }

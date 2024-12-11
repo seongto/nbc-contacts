@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 
 class ContactContentView: UIView {
@@ -26,7 +27,7 @@ class ContactContentView: UIView {
     let lastView = UIView()
 
     var isNew: Bool
-    
+    var cancellables: Set<AnyCancellable> = []
     
     init(isNew: Bool) {
         self.isNew = isNew
@@ -71,6 +72,7 @@ extension ContactContentView {
         mobileFieldLabel.applyFieldLabelStyle()
         
         nameTextField.applyInputStyle(isLast: false)
+        nameTextField.applyLengthLimit(limit: 10, cancellables: &cancellables)
         mobileTextField.applyInputStyle(isLast: true)
         
         

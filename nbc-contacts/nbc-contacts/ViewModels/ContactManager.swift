@@ -9,5 +9,4 @@ import Foundation
 
 struct ContactManager {
     
-//    let dummyContact
 }

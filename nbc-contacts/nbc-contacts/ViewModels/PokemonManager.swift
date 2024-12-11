@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+/// 포켓몬 데이터를 가져오고 이를 저장 및 수정 등의 기능을 제고
 struct PokemonManager {
     
     /// 랜덤 포켓몬 이미지를 가져오는 메소드
