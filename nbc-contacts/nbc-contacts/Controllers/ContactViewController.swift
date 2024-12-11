@@ -8,16 +8,23 @@
 import UIKit
 import SnapKit
 
-class ContactViewController: UIViewController {
+class ContactViewController: UIViewController, ContactContentViewDelegate {
     
     let contentView: ContactContentView
+    var contactManager: ContactManager
+    var pokemonManager: PokemonManager
     
     var isNew: Bool
     
-    init(isNew: Bool){
+    init(isNew: Bool, contactManager: ContactManager, pokemonManager: PokemonManager){
         self.isNew = isNew
+        self.contactManager = contactManager
+        self.pokemonManager = pokemonManager
         self.contentView = ContactContentView(isNew: isNew)
+        
         super.init(nibName: nil, bundle: nil)
+        
+        contentView.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -29,6 +36,10 @@ class ContactViewController: UIViewController {
         
         setupUI()
         setupNavBar()
+        
+        Task {
+            await contentView.tapRequestButton()
+        }
     }
 }
 
@@ -71,3 +82,11 @@ extension ContactViewController {
     }
 }
 
+
+// MARK: - 각종 이벤트 관리
+
+extension ContactViewController {
+    func tapRequestButton() async -> PokemonResponse {
+        return await pokemonManager.fetchRandomPokemon()
+    }
+}

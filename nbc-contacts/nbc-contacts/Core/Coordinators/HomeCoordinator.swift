@@ -28,13 +28,13 @@ class HomeCoordinator: Coordinator {
     }
     
     func goToCreatorScreen() {
-        let contactVC = ContactViewController(isNew: true)
+        let contactVC = ContactViewController(isNew: true, contactManager: contactManager, pokemonManager: pokemonManager)
         
         navigationController.pushViewController(contactVC, animated: true)
     }
     
     func goToDetailScreen() {
-        let contactVC = ContactViewController(isNew: false)
+        let contactVC = ContactViewController(isNew: false, contactManager: contactManager, pokemonManager: pokemonManager)
         
         navigationController.pushViewController(contactVC, animated: true)
     }

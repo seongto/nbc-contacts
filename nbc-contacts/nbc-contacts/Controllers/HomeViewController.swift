@@ -56,8 +56,6 @@ extension HomeViewController {
     func setupUI() {
         view.backgroundColor = Colors.bg
         
-        
-        
         [ headerView, contentView].forEach { view.addSubview($0) }
         
         headerView.snp.makeConstraints { make in

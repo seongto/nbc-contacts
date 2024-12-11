@@ -27,7 +27,9 @@ class ContactContentView: UIView {
     let lastView = UIView()
 
     var isNew: Bool
-    var cancellables: Set<AnyCancellable> = []
+    var cancellables: Set<AnyCancellable> = [] // Combine 구독 유지를 위한 스토어
+    var delegate: ContactContentViewDelegate?
+    
     
     init(isNew: Bool) {
         self.isNew = isNew
@@ -43,7 +45,8 @@ class ContactContentView: UIView {
 }
 
 
-// MARK: - 구성요소 레이아웃 및 액션 매핑
+// MARK: - 구성요소 레이아웃
+
 extension ContactContentView {
     func setupUI() {
         [
@@ -66,14 +69,15 @@ extension ContactContentView {
         
         profileImageView.applyProfileImageStyle(size: CGFloat(200))
         requestButton.applyRequestPokemonButtonStyle()
-        requestButton.applyButtonAction(action: {print("aaa")})
+        requestButton.applyButtonAction(action: tapRequestButton)
         
         nameFieldLabel.applyFieldLabelStyle()
         mobileFieldLabel.applyFieldLabelStyle()
         
-        nameTextField.applyInputStyle(isLast: false)
+        nameTextField.applyInputStyle(placeholder: "이름을 입력해주세요.")
         nameTextField.applyLengthLimit(limit: 10, cancellables: &cancellables)
-        mobileTextField.applyInputStyle(isLast: true)
+        mobileTextField.applyInputStyle(placeholder: "010-0000-0000 양식으로 입력해주세요.")
+        mobileTextField.applyLengthLimit(limit: 15, cancellables: &cancellables)
         
         
         // MARK: - 기타 UI 설정 및 레이아웃
@@ -146,7 +150,20 @@ extension ContactContentView {
             make.edges.equalToSuperview()
             make.width.equalTo(scrollView.snp.width)
         }
+    }
+}
 
-    
+
+// MARK: - 액션 관리
+
+extension ContactContentView {
+    func tapRequestButton() async {
+        guard let pokemon = await delegate?.tapRequestButton() else {
+            return
+        }
+                
+        pokemon.sprites.frontDefault.loadAsyncImage { [weak self] image in
+            self?.profileImageView.image = image ?? UIImage()
+        }
     }
 }

@@ -27,7 +27,7 @@ struct AppHelpers {
    
     static func showAlert(title: String, message: String) {
         guard let topVC = getTopViewController() else {
-            print("❌ ERROR: Could not find top ViewController.")
+            print("ERROR: Could not find top ViewController.")
             return
         }
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

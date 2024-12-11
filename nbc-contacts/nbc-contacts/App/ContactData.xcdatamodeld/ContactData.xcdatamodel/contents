@@ -5,22 +5,22 @@
         <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Contact" inverseName="category" inverseEntity="Contact"/>
     </entity>
     <entity name="Contact" representedClassName="Contact" parentEntity="TimeStamp" syncable="YES">
-        <attribute name="mobile" attributeType="String" minValueString="10" maxValueString="11"/>
-        <attribute name="name" attributeType="String"/>
+        <attribute name="mobile" attributeType="String" minValueString="10" maxValueString="15"/>
+        <attribute name="name" attributeType="String" minValueString="2" maxValueString="10"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="contacts" inverseEntity="Category"/>
         <relationship name="pokemon" maxCount="1" deletionRule="Nullify" destinationEntity="Pokemon" inverseName="contacts" inverseEntity="Pokemon"/>
     </entity>
     <entity name="Pokemon" representedClassName="Pokemon" parentEntity="TimeStamp" syncable="YES">
         <attribute name="name" attributeType="String"/>
         <attribute name="number" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="sprite_back" attributeType="URI"/>
-        <attribute name="sprite_front" attributeType="URI"/>
-        <attribute name="sprite_shiny" optional="YES" attributeType="URI"/>
+        <attribute name="spriteBack" optional="YES" attributeType="String"/>
+        <attribute name="spriteFront" attributeType="String"/>
+        <attribute name="spriteShiny" optional="YES" attributeType="String"/>
         <relationship name="contacts" optional="YES" toMany="YES" deletionRule="Deny" destinationEntity="Contact" inverseName="pokemon" inverseEntity="Contact"/>
     </entity>
     <entity name="TimeStamp" representedClassName="TimeStamp" isAbstract="YES" syncable="YES">
-        <attribute name="created_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="deleted_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="updated_at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="deletedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
 </model>

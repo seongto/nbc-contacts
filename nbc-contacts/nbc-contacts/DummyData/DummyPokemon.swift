@@ -10,8 +10,8 @@
 struct PokemonDummyData: Codable {
     static func getDummyPsyduck() -> PokemonResponse {
         return PokemonResponse(
-            id: 54,
-            name: "psyduck",
+            id: 0,
+            name: "dummyDuck",
             sprites: Sprites(
                 backDefault: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/54.png",
                 frontDefault: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png",

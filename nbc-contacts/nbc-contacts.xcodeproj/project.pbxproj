@@ -7,11 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E92891272D0A2E93002549F4 /* Pokemon+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92891262D0A2E93002549F4 /* Pokemon+CoreDataProperties.swift */; };
+		E92891292D0A2FF0002549F4 /* TimeStamp+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92891282D0A2FF0002549F4 /* TimeStamp+CoreDataProperties.swift */; };
 		E9BB7F142D080E2000ABEB72 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E9BB7F132D080E2000ABEB72 /* Alamofire */; };
 		E9BB7F172D080E2D00ABEB72 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = E9BB7F162D080E2D00ABEB72 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E92891262D0A2E93002549F4 /* Pokemon+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Pokemon+CoreDataProperties.swift"; path = "nbc-contacts/Models/CoreDataModels/Pokemon+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		E92891282D0A2FF0002549F4 /* TimeStamp+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TimeStamp+CoreDataProperties.swift"; path = "nbc-contacts/Models/CoreDataModels/TimeStamp+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E9BB7CF62D06611D00ABEB72 /* nbc-contacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "nbc-contacts.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -52,6 +56,8 @@
 		E9BB7CED2D06611D00ABEB72 = {
 			isa = PBXGroup;
 			children = (
+				E92891282D0A2FF0002549F4 /* TimeStamp+CoreDataProperties.swift */,
+				E92891262D0A2E93002549F4 /* Pokemon+CoreDataProperties.swift */,
 				E9BB7CF82D06611D00ABEB72 /* nbc-contacts */,
 				E9BB7CF72D06611D00ABEB72 /* Products */,
 			);
@@ -145,6 +151,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E92891272D0A2E93002549F4 /* Pokemon+CoreDataProperties.swift in Sources */,
+				E92891292D0A2FF0002549F4 /* TimeStamp+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

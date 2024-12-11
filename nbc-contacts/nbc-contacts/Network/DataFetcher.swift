@@ -15,4 +15,10 @@ struct DataFetcher {
             completion(response.result)
         }
     }
+    
+    static func fetchImageByAlamo(url: URL, completion: @escaping (Result<Data, AFError>) -> Void) {
+        AF.request(url).responseData { response in
+            completion(response.result)
+        }
+    }
 }
