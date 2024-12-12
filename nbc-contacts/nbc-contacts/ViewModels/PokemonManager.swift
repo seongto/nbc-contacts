@@ -12,13 +12,15 @@ import CoreData
 /// 포켓몬 데이터를 가져오고 이를 저장 및 수정 등의 기능을 제공
 class PokemonManager {
     
-    var currentPokemon: Pokemon?
-    var container: NSPersistentContainer
-    var context: NSManagedObjectContext { container.viewContext }
+    private var currentPokemon: Pokemon?
+    private var container: NSPersistentContainer
+    private var context: NSManagedObjectContext { container.viewContext }
     
     init() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.container = appDelegate.persistentContainer
+        
+        testPokemon()
     }
     
     
@@ -73,7 +75,6 @@ class PokemonManager {
     func fetchRandomPokemon() async -> PokemonResponse {
         // 포켓몬 정보를 네트워크에서 가져오는 것을 실패했을 경우를 대비한 기본값
         let dummyDuck = PokemonDummyData.getDummyPsyduck()
-        
         let randomId: Int = Int.random(in: 1...1000)
         
         // 저장을 위한 절차
@@ -125,6 +126,10 @@ class PokemonManager {
         } else {
             return checkDup[0]
         }
+    }
+    
+    func getCurrentPokemon() -> Pokemon? {
+        return currentPokemon
     }
 }
 

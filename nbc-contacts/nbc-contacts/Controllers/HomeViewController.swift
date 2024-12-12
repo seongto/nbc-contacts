@@ -41,13 +41,12 @@ class HomeViewController: UIViewController, HeaderViewDelegate, ContentViewDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
+        refreshContacts()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
     }
-    
-    
 }
 
 
@@ -83,12 +82,13 @@ extension HomeViewController {
     }
     
     func refreshContacts() {
-        var data = contactManager.getContactAll()
+        let data = contactManager.getContactAll()
         
         homeContentView.refreshContacts(data: data)
     }
     
     func tapCellBridge(with contact: Contact) {
-        coordinator?.goToDetailScreen(with: contact)
+        contactManager.selectContact(contact: contact)
+        coordinator?.goToDetailScreen()
     }
 }

@@ -66,7 +66,7 @@ extension HomeContentView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? ContactTableViewCell else { return }
+        guard tableView.cellForRow(at: indexPath) is ContactTableViewCell else { return }
         
         let contact = contactList[indexPath.row]
         

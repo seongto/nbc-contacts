@@ -10,10 +10,9 @@ import SnapKit
 
 class ContactViewController: UIViewController, ContactContentViewDelegate {
     
-    let contentView: ContactContentView
+    let contactContentView: ContactContentView
     var contactManager: ContactManager
     var pokemonManager: PokemonManager
-    var contact: Contact?
     
     var isNew: Bool
     
@@ -23,24 +22,16 @@ class ContactViewController: UIViewController, ContactContentViewDelegate {
         self.isNew = isNew
         self.contactManager = contactManager
         self.pokemonManager = pokemonManager
-        self.contentView = ContactContentView(isNew: isNew)
+        self.contactContentView = ContactContentView(isNew: isNew)
         
         super.init(nibName: nil, bundle: nil)
         
-        contentView.delegate = self
+        contactContentView.delegate = self
+        if isNew == false {
+            contactContentView.setupSelectedContact(with: contactManager.getSelectedContact()!)
+        }
     }
-    
-    init(isNew: Bool, contactManager: ContactManager, pokemonManager: PokemonManager, contact: Contact){
-        self.isNew = isNew
-        self.contactManager = contactManager
-        self.pokemonManager = pokemonManager
-        self.contentView = ContactContentView(isNew: isNew)
-        self.contact = contact
-        
-        super.init(nibName: nil, bundle: nil)
-        
-        contentView.delegate = self
-    }
+   
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -53,7 +44,10 @@ class ContactViewController: UIViewController, ContactContentViewDelegate {
         setupNavBar()
         
         Task {
-            await contentView.tapRequestButton()
+            if isNew {
+                
+                await contactContentView.tapRequestButton()
+            }
         }
     }
 }
@@ -64,11 +58,11 @@ class ContactViewController: UIViewController, ContactContentViewDelegate {
 extension ContactViewController {
     
     private func setupUI(){
-        view.addSubview(contentView)
+        view.addSubview(contactContentView)
                 
         view.backgroundColor = Colors.white
         
-        contentView.snp.makeConstraints { make in
+        contactContentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
@@ -86,13 +80,16 @@ extension ContactViewController {
             .font: Fonts.h3Bold
         ]
         
-        let rightButton = UIBarButtonItem(title:"apply", style: .plain, target: self, action: #selector(tapApplyButton))
+        let rightButton = UIBarButtonItem(
+            title: isNew ? "apply" : "edit",
+            style: .plain,
+            target: self,
+            action: isNew ? #selector(tapApplyButton) : #selector(tapEditButton)
+        )
 
         navigationItem.rightBarButtonItem = rightButton
-        navigationItem.title = isNew ? "새로운 연락처" : "-"
+        navigationItem.title = isNew ? "새로운 연락처" : contactManager.getSelectedContact()?.name ?? "?"
     }
-    
-    
 }
 
 
@@ -104,13 +101,21 @@ extension ContactViewController {
     }
     
     @objc func tapApplyButton() {
-        guard let pokemon = pokemonManager.currentPokemon else {
+        guard let pokemon = pokemonManager.getCurrentPokemon() else {
             return
         }
         
-        contactManager.createNewContact(name: contentView.nameTextField.text ?? "", mobile: contentView.mobileTextField.text ?? "", pokemon: pokemon)
+        contactManager.createNewContact(name: contactContentView.nameTextField.text ?? "", mobile: contactContentView.mobileTextField.text ?? "", pokemon: pokemon)
         
         coordinator?.goBackToHome()
         AppHelpers.showAlert(title: "저장 성공", message: "새로운 연락처가 추가되었습니다.")
+    }
+    
+    @objc func tapEditButton() {
+        guard let pokemon = pokemonManager.getCurrentPokemon() else {
+            return
+        }
+        
+        contactManager.updateContact(name: contactContentView.nameTextField.text ?? "", mobile: contactContentView.mobileTextField.text ?? "", pokemon: pokemon)
     }
 }
