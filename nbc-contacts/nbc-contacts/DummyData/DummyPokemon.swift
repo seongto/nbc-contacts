@@ -28,4 +28,25 @@ struct PokemonDummyData: Codable {
             ]
         )
     }
+    
+    static func getPikachu() -> PokemonResponse {
+        return PokemonResponse(
+            id: 25,
+            name: "Pikachu",
+            sprites: Sprites(
+                backDefault: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/25.png",
+                frontDefault: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+                frontShiny: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png"
+            ),
+            types: [
+                PokemonType(
+                    slot: 1,
+                    type: TypeDetail(
+                        name: "electric",
+                        url: "https://pokeapi.co/api/v2/type/13/"
+                    )
+                )
+            ]
+        )
+    }
 }

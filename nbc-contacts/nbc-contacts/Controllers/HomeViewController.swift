@@ -22,8 +22,8 @@ class HomeViewController: UIViewController, HeaderViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // contentView 데이터 정보 리프레시 함수 넣어주기
         headerView.delegate = self
+        refreshContacts()
     }
     
     init(contactManager: ContactManager, pokemonManager: PokemonManager) {
@@ -54,12 +54,16 @@ class HomeViewController: UIViewController, HeaderViewDelegate {
 
 extension HomeViewController {
     func setupUI() {
+        [
+            headerView,
+            contentView
+        ].forEach { view.addSubview($0) }
+        
         view.backgroundColor = Colors.bg
         
-        [ headerView, contentView].forEach { view.addSubview($0) }
         
         headerView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+            make.top.leading.equalToSuperview()
         }
         
         contentView.snp.makeConstraints { make in
@@ -75,5 +79,11 @@ extension HomeViewController {
 extension HomeViewController {
     func tapAddButton() {
         coordinator?.goToCreatorScreen()
+    }
+    
+    func refreshContacts() {
+        var data = contactManager.getContactAll()
+        
+        contentView.refreshContacts(data: data)
     }
 }
