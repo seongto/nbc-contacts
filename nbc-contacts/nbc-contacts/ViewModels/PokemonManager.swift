@@ -12,15 +12,13 @@ import CoreData
 /// 포켓몬 데이터를 가져오고 이를 저장 및 수정 등의 기능을 제공
 class PokemonManager {
     
-    var newPokemon: PokemonResponse?
+    var currentPokemon: Pokemon?
     var container: NSPersistentContainer
     var context: NSManagedObjectContext { container.viewContext }
     
     init() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         self.container = appDelegate.persistentContainer
-
-        testPokemon()
     }
     
     
@@ -90,10 +88,13 @@ class PokemonManager {
             }
             
             // 2-1. 코어데이터에 저장.
-            if Pokemon.insert(in: context, pokemon: result) != nil {
+            if let pokemon = Pokemon.insert(in: context, pokemon: result) {
                 
                 // 2-2. 코어데이터에 저장된 객체와 다른 원래 Response 타입의 result를 UserDefaults에 저장
                 savePokemonsToUserDefaults(pokemon: result)
+                
+                // 2-3. ContactManager에서 사용 가능하도록 저장
+                currentPokemon = pokemon
                 
                 // return은 아직 Contact에 저장되지 않은 데이터를 기반으로 하므로 result로 반환
                 return result
@@ -109,6 +110,20 @@ class PokemonManager {
             }
                         
             return result
+        }
+    }
+    
+    func getFirstPokemon() -> Pokemon {
+        let pikachu = PokemonDummyData.getPikachu()
+        let predicate = NSPredicate(format: "number == %d", 25)
+        let checkDup = Pokemon.selectFiltered(in: context, predicate: predicate)
+        
+        if checkDup.isEmpty {
+            let result = Pokemon.insert(in: context, pokemon: pikachu)
+            
+            return result!
+        } else {
+            return checkDup[0]
         }
     }
 }

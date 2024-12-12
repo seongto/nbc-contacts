@@ -36,18 +36,31 @@ final class HeaderView: UIView {
 
 extension HeaderView {
     private func setupUI() {
+        [
+            titleLabel,
+            createButton
+        ].forEach { self.addSubview($0) }
+        
         titleLabel.applyHeaderTitleStyle()
-        titleLabel.text = "친구 목록"
         createButton.applyCreateButtonStyle()
         
-        self.backgroundColor = Colors.bg
+        self.backgroundColor = Colors.bg.withAlphaComponent(0.5)
         self.translatesAutoresizingMaskIntoConstraints = false
         
+        titleLabel.text = "친구 목록"
         
-        [titleLabel, createButton].forEach { self.addSubview($0) }
+        // bottom border 삽입을 위해 frame 사이즈 지정
+        let bounds = UIScreen.main.bounds
+        let width = bounds.size.width
+        
+        self.frame.size.width = width
+        self.frame.size.height = 120
+        self.layer.addBorder([.bottom], color: Colors.gray3, width: 0.5)
+        
         
         self.snp.makeConstraints { make in
             make.height.equalTo(120)
+            make.width.equalTo(width)
         }
         
         titleLabel.snp.makeConstraints { make in

@@ -16,6 +16,8 @@ class ContactViewController: UIViewController, ContactContentViewDelegate {
     
     var isNew: Bool
     
+    weak var coordinator : HomeCoordinator?
+    
     init(isNew: Bool, contactManager: ContactManager, pokemonManager: PokemonManager){
         self.isNew = isNew
         self.contactManager = contactManager
@@ -71,15 +73,13 @@ extension ContactViewController {
             .font: Fonts.h3Bold
         ]
         
-        let rightButton = UIBarButtonItem(title:"apply", style: .plain, target: self, action: #selector(testman))
+        let rightButton = UIBarButtonItem(title:"apply", style: .plain, target: self, action: #selector(tapApplyButton))
 
         navigationItem.rightBarButtonItem = rightButton
         navigationItem.title = isNew ? "새로운 연락처" : "-"
     }
     
-    @objc func testman() {
-        print("touched!")
-    }
+    
 }
 
 
@@ -88,5 +88,16 @@ extension ContactViewController {
 extension ContactViewController {
     func tapRequestButton() async -> PokemonResponse {
         return await pokemonManager.fetchRandomPokemon()
+    }
+    
+    @objc func tapApplyButton() {
+        guard let pokemon = pokemonManager.currentPokemon else {
+            return
+        }
+        
+        contactManager.createNewContact(name: contentView.nameTextField.text ?? "", mobile: contentView.mobileTextField.text ?? "", pokemon: pokemon)
+        
+        coordinator?.goBackToHome()
+        AppHelpers.showAlert(title: "저장 성공", message: "새로운 연락처가 추가되었습니다.")
     }
 }

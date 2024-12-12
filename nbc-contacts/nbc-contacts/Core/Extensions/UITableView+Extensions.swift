@@ -11,6 +11,7 @@ import SnapKit
 
 extension UITableView {
     func applyHomeTableStyle() {
-        self.backgroundColor = .clear
+        self.backgroundColor = Colors.bg
+        self.separatorInset = .zero
     }
 }

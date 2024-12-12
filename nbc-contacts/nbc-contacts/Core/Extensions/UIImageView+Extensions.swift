@@ -19,7 +19,7 @@ extension UIImageView {
     func applyProfileImageStyle(size: CGFloat, mask: Bool = false) {
         
         if mask {
-            self.layer.borderColor = Colors.gray2.cgColor
+            self.layer.borderColor = Colors.gray4.cgColor
             self.layer.borderWidth = 1
         } else {
             self.layer.borderColor = nil
