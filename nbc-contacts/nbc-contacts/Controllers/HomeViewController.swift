@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, HeaderViewDelegate, ContentViewDeleg
         
         headerView.delegate = self
         homeContentView.delegate = self
+
         refreshContacts()
     }
     

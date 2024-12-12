@@ -106,6 +106,7 @@ extension ContactViewController {
         }
         
         contactManager.createNewContact(name: contactContentView.nameTextField.text ?? "", mobile: contactContentView.mobileTextField.text ?? "", pokemon: pokemon)
+
         
         coordinator?.goBackToHome()
         AppHelpers.showAlert(title: "저장 성공", message: "새로운 연락처가 추가되었습니다.")
