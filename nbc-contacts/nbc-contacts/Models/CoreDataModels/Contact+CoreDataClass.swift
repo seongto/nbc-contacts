@@ -22,7 +22,7 @@ public class Contact: TimeStamp {
         let newContact = Contact(context: context)
         
         newContact.name = name
-        newContact.mobile = phone
+        newContact.mobile = mobile
         newContact.pokemon = pokemon
         newContact.createdAt = Date()
         newContact.updatedAt = Date()
@@ -38,65 +38,65 @@ public class Contact: TimeStamp {
         }
     }
     
-    /// 🔥 READ - 모든 Contact 조회
+    /// READ - 모든 Contact 조회
     /// - Parameter context: NSManagedObjectContext
     /// - Returns: 모든 Contact 목록
-    public static func fetchAll(in context: NSManagedObjectContext) -> [Contact] {
+    public static func selectAll(in context: NSManagedObjectContext) -> [Contact] {
         let request: NSFetchRequest<Contact> = Contact.fetchRequest()
         
         do {
             let contacts = try context.fetch(request)
-            print("✅ 총 \(contacts.count)개의 Contact를 불러왔습니다.")
+            print("총 \(contacts.count)개의 Contact를 불러왔습니다.")
             return contacts
         } catch {
-            print("❌ READ 에러: \(error.localizedDescription)")
+            print("ERROR : \(error.localizedDescription)")
             return []
         }
     }
     
-    /// 🔥 READ - 특정 조건의 Contact 조회
+    /// READ - 특정 조건의 Contact 조회
     /// - Parameters:
     ///   - context: NSManagedObjectContext
     ///   - predicate: NSPredicate - 조건
     /// - Returns: 조건에 맞는 Contact 목록
-    public static func fetchWithPredicate(in context: NSManagedObjectContext, predicate: NSPredicate) -> [Contact] {
+    public static func selectFiltered(in context: NSManagedObjectContext, predicate: NSPredicate) -> [Contact] {
         let request: NSFetchRequest<Contact> = Contact.fetchRequest()
         request.predicate = predicate
         
         do {
             let contacts = try context.fetch(request)
-            print("✅ 조건에 맞는 \(contacts.count)개의 Contact를 불러왔습니다.")
+            print("조건에 맞는 \(contacts.count)개의 Contact를 불러왔습니다.")
             return contacts
         } catch {
-            print("❌ READ 에러: \(error.localizedDescription)")
+            print("ERROR : \(error.localizedDescription)")
             return []
         }
     }
     
-    /// 🔥 UPDATE - Contact 정보 업데이트
+    /// UPDATE - Contact 정보 업데이트
     /// - Parameters:
     ///   - context: NSManagedObjectContext
     ///   - name: String - 새로운 이름
     ///   - phone: String - 새로운 전화번호
-    ///   - email: String - 새로운 이메일
+    ///   - pokemon: Pokemon - 포켓몬 정보
     /// - Returns: 성공 여부 (true/false)
-    public func update(in context: NSManagedObjectContext, name: String, phone: String, email: String) -> Bool {
+    public func update(in context: NSManagedObjectContext, name: String, mobile: String, pokemon: Pokemon) -> Bool {
         self.name = name
-        self.mobile = phone
-        self.email = email
+        self.mobile = mobile
+        self.pokemon = pokemon
         self.updatedAt = Date()
         
         do {
             try context.save()
-            print("✅ UPDATE 성공: \(name)")
+            print("UPDATE : \(name)")
             return true
         } catch {
-            print("❌ UPDATE 에러: \(error.localizedDescription)")
+            print("ERROR: \(error.localizedDescription)")
             return false
         }
     }
     
-    /// 🔥 DELETE - Contact 삭제
+    /// DELETE - Contact 삭제
     /// - Parameter context: NSManagedObjectContext
     /// - Returns: 성공 여부 (true/false)
     public func delete(in context: NSManagedObjectContext) -> Bool {
@@ -104,10 +104,10 @@ public class Contact: TimeStamp {
         
         do {
             try context.save()
-            print("✅ DELETE 성공")
+            print("DELETE 성공")
             return true
         } catch {
-            print("❌ DELETE 에러: \(error.localizedDescription)")
+            print("ERROR : \(error.localizedDescription)")
             return false
         }
     }

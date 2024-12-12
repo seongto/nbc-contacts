@@ -11,6 +11,7 @@ import SnapKit
 
 extension UITableViewCell {
     func applyHomeTableCellStyle() {
-        
+        self.backgroundColor = Colors.bg
+        self.selectionStyle = .none
     }
 }
