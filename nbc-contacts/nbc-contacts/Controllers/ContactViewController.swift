@@ -13,6 +13,7 @@ class ContactViewController: UIViewController, ContactContentViewDelegate {
     let contentView: ContactContentView
     var contactManager: ContactManager
     var pokemonManager: PokemonManager
+    var contact: Contact?
     
     var isNew: Bool
     
@@ -23,6 +24,18 @@ class ContactViewController: UIViewController, ContactContentViewDelegate {
         self.contactManager = contactManager
         self.pokemonManager = pokemonManager
         self.contentView = ContactContentView(isNew: isNew)
+        
+        super.init(nibName: nil, bundle: nil)
+        
+        contentView.delegate = self
+    }
+    
+    init(isNew: Bool, contactManager: ContactManager, pokemonManager: PokemonManager, contact: Contact){
+        self.isNew = isNew
+        self.contactManager = contactManager
+        self.pokemonManager = pokemonManager
+        self.contentView = ContactContentView(isNew: isNew)
+        self.contact = contact
         
         super.init(nibName: nil, bundle: nil)
         

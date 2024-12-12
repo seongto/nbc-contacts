@@ -35,8 +35,8 @@ class HomeCoordinator: Coordinator {
         navigationController.pushViewController(contactVC, animated: true)
     }
     
-    func goToDetailScreen() {
-        let contactVC = ContactViewController(isNew: false, contactManager: contactManager, pokemonManager: pokemonManager)
+    func goToDetailScreen(with contact: Contact) {
+        let contactVC = ContactViewController(isNew: false, contactManager: contactManager, pokemonManager: pokemonManager, contact: contact)
         
         contactVC.coordinator = self
         
