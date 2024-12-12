@@ -9,10 +9,10 @@ import UIKit
 import SnapKit
 
 
-class HomeViewController: UIViewController, HeaderViewDelegate {
+class HomeViewController: UIViewController, HeaderViewDelegate, ContentViewDelegate {
     
     let headerView: HeaderView = HeaderView()
-    let contentView: HomeContentView = HomeContentView()
+    let homeContentView: HomeContentView = HomeContentView()
     var contactManager: ContactManager
     var pokemonManager: PokemonManager
     
@@ -23,6 +23,8 @@ class HomeViewController: UIViewController, HeaderViewDelegate {
         super.viewDidLoad()
         
         headerView.delegate = self
+        homeContentView.delegate = self
+
         refreshContacts()
     }
     
@@ -40,13 +42,12 @@ class HomeViewController: UIViewController, HeaderViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
+        refreshContacts()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = false
     }
-    
-    
 }
 
 
@@ -56,7 +57,7 @@ extension HomeViewController {
     func setupUI() {
         [
             headerView,
-            contentView
+            homeContentView
         ].forEach { view.addSubview($0) }
         
         view.backgroundColor = Colors.bg
@@ -66,7 +67,7 @@ extension HomeViewController {
             make.top.leading.equalToSuperview()
         }
         
-        contentView.snp.makeConstraints { make in
+        homeContentView.snp.makeConstraints { make in
             make.top.equalTo(headerView.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
@@ -82,8 +83,13 @@ extension HomeViewController {
     }
     
     func refreshContacts() {
-        var data = contactManager.getContactAll()
+        let data = contactManager.getContactAll()
         
-        contentView.refreshContacts(data: data)
+        homeContentView.refreshContacts(data: data)
+    }
+    
+    func tapCellBridge(with contact: Contact) {
+        contactManager.selectContact(contact: contact)
+        coordinator?.goToDetailScreen()
     }
 }

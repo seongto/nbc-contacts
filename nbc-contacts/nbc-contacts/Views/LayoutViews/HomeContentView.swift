@@ -11,6 +11,8 @@ import SnapKit
 final class HomeContentView: UIView {
     
     let tableView = UITableView()
+    weak var delegate: ContentViewDelegate?
+    
     private var contactList: [Contact] = []
     
     init() {
@@ -47,7 +49,7 @@ extension HomeContentView {
 }
 
 
-// MARK: - 액션 관리
+// MARK: - 테이블뷰 관리
 
 extension HomeContentView {
     func refreshContacts(data: [Contact]) {
@@ -62,9 +64,19 @@ extension HomeContentView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard tableView.cellForRow(at: indexPath) is ContactTableViewCell else { return }
+        
+        let contact = contactList[indexPath.row]
+        
+        delegate?.tapCellBridge(with: contact)
+    }
 }
 
+
 extension HomeContentView: UITableViewDataSource {
+    /// 셀의 개수 반환
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contactList.count
     }
@@ -82,6 +94,4 @@ extension HomeContentView: UITableViewDataSource {
         
         return cell
     }
-    
-    
 }
