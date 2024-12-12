@@ -9,5 +9,5 @@ import UIKit
 
 extension UIColor {
     // ColorSet
-    static var lineColor: UIColor = UIColor.themeRed
+    static let lineColor: UIColor = UIColor.themeRed
 }

@@ -163,7 +163,15 @@ extension ContactContentView {
         }
                 
         pokemon.sprites.frontDefault.loadAsyncImage { [weak self] image in
-            self?.profileImageView.image = image ?? UIImage()
+            self?.profileImageView.image = image ?? UIImage(named: "defaultProfileImage")
+        }
+    }
+    
+    func setupSelectedContact(with contact: Contact){
+        nameTextField.text = contact.name
+        mobileTextField.text = contact.mobile
+        contact.pokemon?.spriteFront?.loadAsyncImage { [weak self] image in
+            self?.profileImageView.image = image ?? UIImage(named: "defaultProfileImage")
         }
     }
 }

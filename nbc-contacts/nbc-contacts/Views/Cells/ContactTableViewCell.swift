@@ -79,6 +79,8 @@ extension ContactTableViewCell {
 }
 
 
+// MARK: - 배열 데이터 매핑
+
 extension ContactTableViewCell {
     func config(contact: Contact) {
         nameLabel.text = contact.name ?? "no name"

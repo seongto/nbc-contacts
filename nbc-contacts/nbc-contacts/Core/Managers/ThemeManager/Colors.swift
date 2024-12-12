@@ -10,29 +10,29 @@ struct Colors {
     // 기본적용 색상값
     
     // 라이트에서 화이트, 다크에서 블랙
-    static var label: UIColor = .themeLabel
+    static let label: UIColor = .themeLabel
     // 라이트에서 블랙, 다크에서 화이트
-    static var bg: UIColor = .themeBg
+    static let bg: UIColor = .themeBg
     // 라이트에서 밝은 회색, 다크에서 어두운 회색
-    static var fill: UIColor = .themeFill
+    static let fill: UIColor = .themeFill
     
     // 아래 화이트와 블랙은 고정값.
-    static var white: UIColor = .white
-    static var black: UIColor = .black
+    static let white: UIColor = .white
+    static let black: UIColor = .black
 
-    static var gray1: UIColor = .themeGray1
-    static var gray2: UIColor = .themeGray2
-    static var gray3: UIColor = .themeGray3
-    static var gray4: UIColor = .themeGray4
-    static var gray5: UIColor = .themeGray5
-    static var gray6: UIColor = .themeGray6
+    static let gray1: UIColor = .themeGray1
+    static let gray2: UIColor = .themeGray2
+    static let gray3: UIColor = .themeGray3
+    static let gray4: UIColor = .themeGray4
+    static let gray5: UIColor = .themeGray5
+    static let gray6: UIColor = .themeGray6
 
-    static var red: UIColor = .themeRed
-    static var blue: UIColor = .themeBlue
-    static var yellow: UIColor = .themeYellow
-    static var green: UIColor = .themeGreen
-    static var orange: UIColor = .themeOrange
-    static var mint: UIColor = .themeMint
+    static let red: UIColor = .themeRed
+    static let blue: UIColor = .themeBlue
+    static let yellow: UIColor = .themeYellow
+    static let green: UIColor = .themeGreen
+    static let orange: UIColor = .themeOrange
+    static let mint: UIColor = .themeMint
 
-    static var darkGray: UIColor = .ballGray
+    static let darkGray: UIColor = .ballGray
 }
