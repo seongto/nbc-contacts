@@ -31,12 +31,14 @@ class HomeCoordinator: Coordinator {
         let contactVC = ContactViewController(isNew: true, contactViewModel: contactViewModel, pokemonViewModel: pokemonViewModel )
         
         contactVC.coordinator = self
-        
+       
         navigationController.pushViewController(contactVC, animated: true)
     }
     
     func goToDetailScreen() {
         let contactVC = ContactViewController(isNew: false, contactViewModel: contactViewModel, pokemonViewModel: pokemonViewModel)
+        
+        contactVC.coordinator = self
         
         contactVC.coordinator = self
         
