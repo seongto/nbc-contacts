@@ -13,8 +13,8 @@ class HomeViewController: UIViewController, HeaderViewDelegate, ContentViewDeleg
     
     let headerView: HeaderView = HeaderView()
     let homeContentView: HomeContentView = HomeContentView()
-    var contactManager: ContactManager
-    var pokemonManager: PokemonManager
+    var contactViewModel: ContactViewModel
+    var pokemonViewModel: PokemonViewModel
     
     weak var coordinator : HomeCoordinator?
     
@@ -27,9 +27,9 @@ class HomeViewController: UIViewController, HeaderViewDelegate, ContentViewDeleg
         refreshContacts()
     }
     
-    init(contactManager: ContactManager, pokemonManager: PokemonManager) {
-        self.contactManager = contactManager
-        self.pokemonManager = pokemonManager
+    init(contactViewModel: ContactViewModel, pokemonViewModel: PokemonViewModel) {
+        self.contactViewModel = contactViewModel
+        self.pokemonViewModel = pokemonViewModel
         super.init(nibName: nil, bundle: nil)
         
         setupUI()
@@ -82,13 +82,13 @@ extension HomeViewController {
     }
     
     func refreshContacts() {
-        let data = contactManager.getContactAll()
+        let data = contactViewModel.getContactAll()
         
         homeContentView.refreshContacts(data: data)
     }
     
     func tapCellBridge(with contact: Contact) {
-        contactManager.selectContact(contact: contact)
+        contactViewModel.selectContact(contact: contact)
         coordinator?.goToDetailScreen()
     }
 }

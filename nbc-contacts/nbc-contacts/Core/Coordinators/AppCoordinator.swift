@@ -10,15 +10,15 @@ import UIKit
 
 
 class AppCoordinator: Coordinator {
-    let contactManager = ContactManager()
-    let pokemonManager = PokemonManager()
+    let contactViewModel = ContactViewModel()
+    let pokemonViewModel = PokemonViewModel()
     
     var navigationController: UINavigationController
     var homeCoordinator: HomeCoordinator
     
     init( navigationController:UINavigationController) {
         self.navigationController = navigationController
-        self.homeCoordinator = HomeCoordinator(navigationController: navigationController, contactManager: contactManager, pokemonManager: pokemonManager)
+        self.homeCoordinator = HomeCoordinator(navigationController: navigationController, contactViewModel: contactViewModel, pokemonViewModel: pokemonViewModel)
     }
     
     func start() {

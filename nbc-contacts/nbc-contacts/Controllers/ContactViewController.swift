@@ -11,24 +11,24 @@ import SnapKit
 class ContactViewController: UIViewController, ContactContentViewDelegate {
     
     let contactContentView: ContactContentView
-    var contactManager: ContactManager
-    var pokemonManager: PokemonManager
+    var contactViewModel: ContactViewModel
+    var pokemonViewModel: PokemonViewModel
     
     var isNew: Bool
     
     weak var coordinator : HomeCoordinator?
     
-    init(isNew: Bool, contactManager: ContactManager, pokemonManager: PokemonManager){
+    init(isNew: Bool, contactViewModel: ContactViewModel, pokemonViewModel: PokemonViewModel){
         self.isNew = isNew
-        self.contactManager = contactManager
-        self.pokemonManager = pokemonManager
+        self.contactViewModel = contactViewModel
+        self.pokemonViewModel = pokemonViewModel
         self.contactContentView = ContactContentView(isNew: isNew)
         
         super.init(nibName: nil, bundle: nil)
         
         contactContentView.delegate = self
         if isNew == false {
-            contactContentView.setupSelectedContact(with: contactManager.getSelectedContact()!)
+            contactContentView.setupSelectedContact(with: contactViewModel.getSelectedContact()!)
         }
     }
    
@@ -88,7 +88,7 @@ extension ContactViewController {
         )
 
         navigationItem.rightBarButtonItem = rightButton
-        navigationItem.title = isNew ? "새로운 연락처" : contactManager.getSelectedContact()?.name ?? "?"
+        navigationItem.title = isNew ? "새로운 연락처" : contactViewModel.getSelectedContact()?.name ?? "?"
     }
 }
 
@@ -97,25 +97,25 @@ extension ContactViewController {
 
 extension ContactViewController {
     func tapRequestButton() async -> PokemonResponse {
-        return await pokemonManager.fetchRandomPokemon()
+        return await pokemonViewModel.fetchRandomPokemon()
     }
     
     @objc func tapApplyButton() {
-        guard let pokemon = pokemonManager.getCurrentPokemon() else {
+        guard let pokemon = pokemonViewModel.getCurrentPokemon() else {
             return
         }
         
-        contactManager.createNewContact(name: contactContentView.nameTextField.text ?? "", mobile: contactContentView.mobileTextField.text ?? "", pokemon: pokemon)
+        contactViewModel.createNewContact(name: contactContentView.nameTextField.text ?? "", mobile: contactContentView.mobileTextField.text ?? "", pokemon: pokemon)
         
         coordinator?.goBackToHome()
         AppHelpers.showAlert(title: "저장 성공", message: "새로운 연락처가 추가되었습니다.")
     }
     
     @objc func tapEditButton() {
-        guard let pokemon = pokemonManager.getCurrentPokemon() else {
+        guard let pokemon = pokemonViewModel.getCurrentPokemon() else {
             return
         }
         
-        contactManager.updateContact(name: contactContentView.nameTextField.text ?? "", mobile: contactContentView.mobileTextField.text ?? "", pokemon: pokemon)
+        contactViewModel.updateContact(name: contactContentView.nameTextField.text ?? "", mobile: contactContentView.mobileTextField.text ?? "", pokemon: pokemon)
     }
 }
