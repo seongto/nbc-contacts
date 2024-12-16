@@ -27,53 +27,52 @@
 
 - ### 기본 구현 기능
   - LV 1
-    + [ ] `UILabel`, `UITableView`, `UIButton` 을 이용해서 기본적인 UI 를 구성
-    + [ ] `UITableViewCell` 에 프로필 이미지를 보여줄 `UIImageView` 와 이름을 보여줄 `UILabel` 을 넣기. 전화번호를 표시할 UILabel 삽입.
-    + [ ] 
+    + [x] `UILabel`, `UITableView`, `UIButton` 을 이용해서 기본적인 UI 를 구성
+    + [x] `UITableViewCell` 에 프로필 이미지를 보여줄 `UIImageView` 와 이름을 보여줄 `UILabel` 을 넣기. 전화번호를 표시할 UILabel 삽입.
   - LV 2
-    + [ ] 연락처 추가 화면을 구현
-    + [ ] `UINavigationController.push` 사용하여 메인페이지에서 이 화면으로 이동하도록 구성
+    + [x] 연락처 추가 화면을 구현
+    + [x] `UINavigationController.push` 사용하여 메인페이지에서 이 화면으로 이동하도록 구성
   - LV 3
-    - [ ] 상단 네비게이션 바 영역을 구현.
-    - [ ] - 상단에 “제목” 과 “적용” 버튼을 개발합니다. `UINavigationController` 를 활용.
+    - [x] 상단 네비게이션 바 영역을 구현.
+    - [x] - 상단에 “제목” 과 “적용” 버튼을 개발합니다. `UINavigationController` 를 활용.
   - LV 4
-    - [ ] 랜덤 이미지 생성 버튼을 구현
-    - [ ] 포켓몬 API를 통해 버튼을 클릭할때마다 랜덤한 포켓몬 이미지를 불러와서 프로필로 지정하기.
-    - [ ] `https://pokeapi.co/api/v2/pokemon/{1~1000사이의랜덤숫자입력}`
+    - [x] 랜덤 이미지 생성 버튼을 구현
+    - [x] 포켓몬 API를 통해 버튼을 클릭할때마다 랜덤한 포켓몬 이미지를 불러와서 프로필로 지정하기.
+    - [x] `https://pokeapi.co/api/v2/pokemon/{1~1000사이의랜덤숫자입력}`
   - LV 5
-    - [ ] 적용 버튼을 통해 연락처 데이터(이름/전화번호/프로필이미지)를 디스크에 실제 저장하도록 구현
-    - [ ] `UINavigationController.popViewController`를 활용하여 디스크에 저장됨과 동시에, 메인화면으로 돌아오도록 구현
-    - [ ] 
+    - [x] 적용 버튼을 통해 연락처 데이터(이름/전화번호/프로필이미지)를 디스크에 실제 저장하도록 구현
+    - [x] `UINavigationController.popViewController`를 활용하여 디스크에 저장됨과 동시에, 메인화면으로 돌아오도록 구현
 <br><br>
 
 ![hard mode](https://staticdelivery.nexusmods.com/mods/5113/images/headers/229_1676449560.jpg)
 
 - ### 심화 구현 기능
   - LV 6
-    + [ ] 연락처 추가를 마치고 메인화면으로 돌아왔을 때 항상 이름 순으로 정렬.
+    + [x] 연락처 추가를 마치고 메인화면으로 돌아왔을 때 항상 이름 순으로 정렬.
   - LV 7
-    + [ ] `UITableViewCell` 을 클릭했을 때도 `PhoneBookViewController` 페이지로 이동하되, 기존의 생성용 화면(뷰컨트롤러)을 재활용.
-    + [ ] 상단 네비게이션바에도 연락처의 이름이 뜨도록 설정.
+    + [x] `UITableViewCell` 을 클릭했을 때도 `PhoneBookViewController` 페이지로 이동하되, 기존의 생성용 화면(뷰컨트롤러)을 재활용.
+    + [x] 상단 네비게이션바에도 연락처의 이름이 뜨도록 설정.
   - LV 8
-    + [ ] UITableViewCell 을 클릭해서 이동해온 연락처 편집 페이지에서, 연락처 데이터의 수정기능 구현
+    + [x] UITableViewCell 을 클릭해서 이동해온 연락처 편집 페이지에서, 연락처 데이터의 수정기능 구현
 <br><br>
 
 ![Challenge mode](https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70050000007810/9c91c6b2b72cded0aee55c131515090e1d3b2ae35df64f352dc991aead38a1cb)
 
 - ### 도전 구현 기능
-  - [ ] ~~포켓몬 이미지가 지정된 영역 밖으로 나가지 않게 하기~~ -> 포켓몬이 지정된 영역 밖으로 튀어나온 효과 연출 : 디자인을 통해 구현
-  - [ ] 연락처를 매우 많이 추가했을 경우(20개 이상), 테이블 뷰 스크롤을 쭉 내리다보면, 이미지가 겹쳐보이거나 텍스트가 제대로 노출되지 않는 문제 해결해보기
-    - 이 문제는 `prepareForReuse` 의 개념을 사용하면 해결 가능.
-  - [ ] 예외 사항을 예측하고 이에 대한 예외 처리 구현
+  - [x] ~~포켓몬 이미지가 지정된 영역 밖으로 나가지 않게 하기~~
+    - 변경 : 포켓몬이 지정된 영역 밖으로 튀어나온 효과 연출 : 디자인을 통해 구현
+    - 과제내용의 벗어나지 않게끔 하는 효과는 친구 목록에서 구현.
+  - [ ] ~~연락처를 매우 많이 추가했을 경우(20개 이상), 테이블 뷰 스크롤을 쭉 내리다보면, 이미지가 겹쳐보이거나 텍스트가 제대로 노출되지 않는 문제 해결해보기~~
+    - ~~이 문제는 `prepareForReuse` 의 개념을 사용하면 해결 가능.~~
+    - 문제가 뜨지 않는다...
+  - [x] 예외 사항을 예측하고 이에 대한 예외 처리 구현
+  - [x] 연락처 정보는 CoreData에 저장하고, 통신으로 받은 본래의 codable 데이터를 UserDefaults에 저장하고 관리하기
+  - [x] Coordinator 적용하기
+  - [x] Delegate 패턴 적용하기
+  - [x] UserDefaults or 코어데이터를 이용하여 이전에 가져왔던 포켓몬 정보 재호출하지 않기.
+  - [x] Combine을 활용한 글자수 제한 걸어보기
 <br><br>
  
-- ### 추가 구현 기능
-  - [ ] 포켓몬 이미지가 배경에도 나타나게 하기
-  - [ ] 연락처의 각 정보를 테이블을 나누고 관계 설정해보기 (ex. 카테고리)
-  - [ ] 연락처에 소프트삭제 기능을 추가하고, 휴지통 적용해보기
-  - [ ] 연락처 정보는 CoreData에 저장하고, 최근 추가 목록을 추가하여 이를 UserDefaults에 저장하고 관리하기(생성 시간 내림차순 정렬)
-  - [ ] 연락처 정보에 포켓몬 정보 추가하기
-  - [ ] 상수값들과 컴포넌트 디자인을 라이브러리로 만들어 적용해보기
 
 <br><br>
 

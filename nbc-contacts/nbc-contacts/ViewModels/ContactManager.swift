@@ -1,5 +1,5 @@
 //
-//  ContactManager.swift
+//  contactViewModel.swift
 //  nbc-contacts
 //
 //  Created by MaxBook on 12/10/24.
@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 
-class ContactManager {
+class ContactViewModel {
     
     private var selectedContact: Contact?
     private var container: NSPersistentContainer
@@ -69,7 +69,7 @@ class ContactManager {
 
 // MARK: - 예외처리
 
-extension ContactManager {
+extension ContactViewModel {
     private func validateTextData(name: String, mobile: String) -> Bool {
         guard name.isEmpty == false && name.count >= 2 else {
             AppHelpers.showAlert(title: "이름이 너무 짧아요!", message: "이름을 최소 2글자 이상 적어주세요. 최대 10글자.")

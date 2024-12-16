@@ -10,17 +10,17 @@ import UIKit
 
 class HomeCoordinator: Coordinator {
     var navigationController: UINavigationController
-    var contactManager: ContactManager
-    var pokemonManager: PokemonManager
+    var contactViewModel: ContactViewModel
+    var pokemonViewModel: PokemonViewModel
 
-    init(navigationController: UINavigationController, contactManager: ContactManager, pokemonManager: PokemonManager) {
+    init(navigationController: UINavigationController, contactViewModel: ContactViewModel, pokemonViewModel: PokemonViewModel) {
         self.navigationController = navigationController
-        self.contactManager = contactManager
-        self.pokemonManager = pokemonManager
+        self.contactViewModel = contactViewModel
+        self.pokemonViewModel = pokemonViewModel
     }
 
     func start() {
-        let homeVC = HomeViewController( contactManager: contactManager, pokemonManager: pokemonManager )
+        let homeVC = HomeViewController( contactViewModel: contactViewModel, pokemonViewModel: pokemonViewModel )
         
         homeVC.coordinator = self
                         
@@ -28,15 +28,17 @@ class HomeCoordinator: Coordinator {
     }
     
     func goToCreatorScreen() {
-        let contactVC = ContactViewController(isNew: true, contactManager: contactManager, pokemonManager: pokemonManager)
+        let contactVC = ContactViewController(isNew: true, contactViewModel: contactViewModel, pokemonViewModel: pokemonViewModel )
         
         contactVC.coordinator = self
-        
+       
         navigationController.pushViewController(contactVC, animated: true)
     }
     
     func goToDetailScreen() {
-        let contactVC = ContactViewController(isNew: false, contactManager: contactManager, pokemonManager: pokemonManager)
+        let contactVC = ContactViewController(isNew: false, contactViewModel: contactViewModel, pokemonViewModel: pokemonViewModel)
+        
+        contactVC.coordinator = self
         
         contactVC.coordinator = self
         
